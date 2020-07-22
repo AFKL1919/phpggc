@@ -9,6 +9,8 @@ Currently, the tool supports: CodeIgniter4, Doctrine, Drupal7, Guzzle, Laravel, 
 Just adding some of the chains I found.
 Here's what I found:
 ```
+Laravel/FW1                               <=7.19.1                       file_write       __destruct
+Laravel/RCE7                              <=7.19.1                       rce              __destruct
 ThinkPHP/RCE2                             <= 6.0.3                       rce              __destruct
 ```
 
