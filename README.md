@@ -4,6 +4,13 @@
 When encountering an unserialize on a website you don't have the code of, or simply when trying to build an exploit, this tool allows you to generate the payload without having to go through the tedious steps of finding gadgets and combining them. It can be seen as the equivalent of [frohoff's ysoserial](https://github.com/frohoff/ysoserial), but for PHP.
 Currently, the tool supports: CodeIgniter4, Doctrine, Drupal7, Guzzle, Laravel, Magento, Monolog, Phalcon, Podio, Slim, SwiftMailer, Symfony, Wordpress, Yii and ZendFramework.
 
+## About This Fork
+
+Just adding some of the chains I found.
+Here's what I found:
+```
+ThinkPHP/RCE2                             <= 6.0.3                       rce              __destruct
+```
 
 ## Requirements
 
