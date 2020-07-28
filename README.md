@@ -13,6 +13,7 @@ Here's what I found:
 Laravel/FW1                               <=7.19.1                       file_write       __destruct
 Laravel/RCE7                              <=7.19.1                       rce              __destruct
 ThinkPHP/RCE2                             <= 6.0.3                       rce              __destruct
+Yii/RCE2                                  2.0.0 <= 2.0.13                rce              __destruct
 ```
 
 ## Requirements
