@@ -14,6 +14,7 @@ Laravel/FW1                               <=7.19.1                       file_wr
 Laravel/RCE7                              <=7.19.1                       rce              __destruct
 ThinkPHP/RCE2                             6.0.0 <= 6.0.3                 rce              __destruct
 Yii/RCE2                                  2.0.0 <= 2.0.13                rce              __destruct
+Yii/RCE3                                  2.0.0 <= 2.0.13                rce              __wakeup
 ```
 
 ## Requirements
