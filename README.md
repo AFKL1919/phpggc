@@ -15,6 +15,7 @@ Laravel/RCE7                              <=7.19.1                       rce    
 ThinkPHP/RCE2                             6.0.0 <= 6.0.3                 rce              __destruct
 Yii/RCE2                                  2.0.0 <= 2.0.13                rce              __destruct
 Yii/RCE3                                  2.0.0 <= 2.0.13                rce              __wakeup
+ZendFramework/RCE4                        ? <= 3.1.3                     rce              __destruct       
 ```
 
 ## Requirements
@@ -81,7 +82,7 @@ ZendFramework/FD1                         ? <= 1.12.20                   file_de
 ZendFramework/RCE1                        ? <= 1.12.20                   rce              __destruct     *    
 ZendFramework/RCE2                        1.11.12 <= 1.12.20             rce              __toString     *    
 ZendFramework/RCE3                        2.0.1 <= ?                     rce              __destruct       
-
+ZendFramework/RCE4                        ? <= 3.1.3                     rce              __destruct       
 ```
 
 Filter gadget chains:

