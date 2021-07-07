@@ -16,6 +16,7 @@ ThinkPHP/RCE2                             6.0.0 <= 6.0.3                 rce    
 Yii/RCE2                                  2.0.0 <= 2.0.13                rce              __destruct
 Yii/RCE3                                  2.0.0 <= 2.0.13                rce              __wakeup
 ZendFramework/RCE4                        ? <= 3.1.3                     rce              __destruct       
+ThinkPHP/RCE3                             6.0.0 <= 6.0.8                 rce              __destruct
 ```
 
 ## Requirements
