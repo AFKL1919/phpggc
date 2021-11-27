@@ -2,12 +2,12 @@
 
 namespace GadgetChain\Yii;
 
-class RCE1 extends \PHPGGC\GadgetChain\RCE
+class RCE1 extends \PHPGGC\GadgetChain\RCE\FunctionCall
 {
     public static $version = '1.1.20';
     public static $vector = '__wakeup';
     public static $author = 'cf';
-    public static $informations = '
+    public static $information = '
         As the payload uses file_get_contents("data://..."), allow_url_fopen
         must be ON.
     ';

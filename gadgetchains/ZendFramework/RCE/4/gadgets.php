@@ -1,52 +1,70 @@
 <?php
-namespace Zend\Log {
-    class Logger
+
+class Zend_Log
+{
+    protected $_writers;
+
+    function __construct($x)
     {
-        protected $writers;
-
-        function __construct($func, $param)
-        {
-            $this->writers = [new \Zend\Log\Writer\Mail($func, $param)];
-        }
+        $this->_writers = $x;
     }
 }
 
-namespace Zend\Log\Writer {
-    class Mail {
-        protected $mail;
-        protected $eventsToMail;
-        protected $subjectPrependText;
+class Zend_Log_Writer_Mail
+{
+    protected $_eventsToMail;
+    protected $_layoutEventsToMail;
+    protected $_mail;
+    protected $_layout;
+    protected $_subjectPrependText;
 
-        function __construct($func, $param)
-        {
-            $this->mail = new \Zend\View\Renderer\PhpRenderer($func);
-            $this->eventsToMail = [$param];
-            $this->subjectPrependText = null;
-        }
-        
+    public function __construct(
+        $eventsToMail,
+        $layoutEventsToMail,
+        $mail,
+        $layout
+    ) {
+        $this->_eventsToMail       = $eventsToMail;
+        $this->_layoutEventsToMail = $layoutEventsToMail;
+        $this->_mail               = $mail;
+        $this->_layout             = $layout;
+        $this->_subjectPrependText = null;
     }
 }
 
-namespace Zend\View\Renderer {
-    class PhpRenderer {
-        private $__helpers;
+class Zend_Mail
+{
+}
 
-        function __construct($func)
-        {
-            $this->__helpers = new \Zend\View\Resolver\TemplateMapResolver($func);
-        }
+class Zend_Layout
+{
+    protected $_inflector;
+    protected $_inflectorEnabled;
+    protected $_layout;
+
+    public function __construct(
+        $inflector,
+        $inflectorEnabled,
+        $layout
+    ) {
+        $this->_inflector        = $inflector;
+        $this->_inflectorEnabled = $inflectorEnabled;
+        $this->_layout           = '){}' . $layout . '/*';
     }
 }
 
-namespace Zend\View\Resolver {
-    class TemplateMapResolver {
-        protected $map;
+class Zend_Filter_Callback
+{
+    protected $_callback = "create_function";
+    protected $_options = [""];
+}
 
-        function __construct($func)
-        {
-            $this->map = [
-                "setBody" => $func,
-            ];
-        }
+class Zend_Filter_Inflector
+{
+    protected $_rules = [];
+
+    public function __construct()
+    {
+        $this->_rules['script'] = [new Zend_Filter_Callback()];
     }
 }

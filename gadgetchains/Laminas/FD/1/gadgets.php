@@ -1,9 +1,9 @@
 <?php
-namespace Laminas\Http\Response    {
+namespace Laminas\Http\Response {
     class Stream {
-        function __construct($remote_file) {
-		$this->cleanup='1';
-		$this->streamName=$remote_file;
+        function __construct($remote_path) {
+            $this->cleanup = '1';
+            $this->streamName = $remote_path;
         }
     }
 }

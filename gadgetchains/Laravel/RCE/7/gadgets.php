@@ -1,67 +1,45 @@
 <?php
-namespace Whoops\Handler {
-	abstract class Handler
-	{
-		private $run;
-		private $inspector;
-		private $exception;
-		
-		public function set($param)
-		{
-			$this->run = null;
-			$this->inspector = null;
-			$this->exception = $param;
-		}
-	}
-	
-	class CallbackHandler extends Handler
-	{
-		protected $callable;
-		
-		public function __construct($func, $param)
-		{
-			parent::set($param);
-			$this->callable = $func;
-		}
-	}
+
+namespace Illuminate\Broadcasting
+{
+    class PendingBroadcast
+    {
+        protected $events;
+        protected $event;
+
+        public function __construct($function, $parameter)
+        {
+            $this->events = new \Illuminate\Bus\Dispatcher($function); 
+            $this->event = new \Illuminate\Queue\CallQueuedClosure($parameter); 
+        }
+    }
 }
 
-namespace Illuminate\Queue {
-	class QueueManager
-	{
-		protected $app;
-		protected $connectors;
-		
-		public function __construct($func, $param) {
-			$this->app = [
-				'config'=>[
-					'queue.default'=>'aaa',
-					'queue.connections.aaa'=>[
-						'driver'=>'bbb'
-					],
-				]
-			];
-			
-			$file = new \Whoops\Handler\CallbackHandler($func, $param);
-			$this->connectors = [
-				'bbb'=>[
-					$file, "handle"
-				]
-			];
-		}
-	}
+namespace Illuminate\Bus
+{
+    class Dispatcher
+    {
+        protected $queueResolver;
+
+        public function __construct($function)
+        {
+            $this->queueResolver = $function;
+
+        }
+    }
 }
 
-namespace Symfony\Component\Routing\Loader\Configurator {
-	class ImportConfigurator
-	{
-		private $parent;
-		private $route;
+namespace Illuminate\Queue
+{
+    class CallQueuedClosure
+    {
+        protected $connection;
 
-		public function __construct($func, $param)
-		{
-			$this->parent = new \Illuminate\Queue\QueueManager($func, $param);
-			$this->route = null;
-		}
-	}
+        public function __construct($parameter)
+        {
+            $this->connection = $parameter;
+        }
+    }
 }
+
+
