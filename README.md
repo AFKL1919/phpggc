@@ -5,10 +5,7 @@ When encountering an unserialize on a website you don't have the code of, or sim
 Currently, the tool supports gadget chains such as: CodeIgniter4, Doctrine, Drupal7, Guzzle, Laravel, Magento, Monolog, Phalcon, Podio, Slim, SwiftMailer, Symfony, Wordpress, Yii and ZendFramework.
 
 ## About This Fork
-
-Just adding some of the chains I found.
-
-Here's what I found:
+This project collects chains that I found myself, as well as chains that I collected online.
 
 ```
 Laravel/FW1                               <=7.19.1                       file_write       __destruct
